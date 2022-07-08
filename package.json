@@ -1,0 +1,25 @@
+{
+  "name": "js-algorithms-study",
+  "version": "1.0.0",
+  "description": "Study JS",
+  "main": "index.js",
+  "dependencies": {
+    "node-fetch": "^3.2.6",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aocamilo/js-algorithms-study.git"
+  },
+  "author": "Camilo Arango",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aocamilo/js-algorithms-study/issues"
+  },
+  "homepage": "https://github.com/aocamilo/js-algorithms-study#readme"
+}
