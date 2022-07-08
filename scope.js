@@ -63,7 +63,8 @@ function example() {
 
 //if strict mode is added it would throw a ReferenceError since a it's not defined
 
-//Adding the variables to the function object itself allows to access variables of function scope
+// Breaking the JS Scope
+// Adding the variables to the function object itself allows to access variables of function scope
 // from outside the function
 function foo() {
   foo.myVar = 42;
@@ -72,3 +73,34 @@ function foo() {
 console.log(foo.myVar); //"undefined"
 foo();
 console.log(foo.myVar); //"42"
+
+// i is declared with let so it gets a block scope that only allows us to call the variable inside the loop
+for (let i = 0; i < 10; i++) {
+  console.log(i);
+}
+
+console.log(`${i} from outside the block scope`);
+
+//Closures are very interesting as you can access outer function's scope from the inner function
+const piggyBank = () => {
+  let myPiggyBank = 0;
+
+  return (cant) => {
+    myPiggyBank += cant;
+    console.log(`My piggy bank now has ${myPiggyBank}`);
+  };
+};
+
+const myPiggyBank = piggyBank();
+myPiggyBank(15);
+myPiggyBank(1);
+
+function cantTouchMe() {
+  if (true) {
+    let cantTouchThis = "cant touch this variable"; // Block scoped variable, cant be touched outside the block scope
+    console.log(`${cantTouchThis}`);
+  }
+  console.log(`${cantTouchThis} from outside the block scope`); // cantTouchThis is not defined
+}
+
+cantTouchMe();
