@@ -21,6 +21,7 @@ setTimeout(() => {
 }, 2000); // After 2s it will execute the callback function
 
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+import { XMLHttpRequest } from "xmlhttprequest";
 const API = "https://rickandmortyapi.com/api/character";
 
 function fetchData(url, callback) {
@@ -45,3 +46,88 @@ fetchData(API, function (error, data) {
   if (error) return console.error(error);
   console.log("The data =>", data);
 });
+
+// A beautiful (?) callback hell!
+
+setTimeout(() => {
+  console.log(1);
+  setTimeout(() => {
+    console.log(2);
+    setTimeout(() => {
+      console.log(3);
+      setTimeout(() => {
+        console.log(4);
+        setTimeout(() => {
+          console.log(5);
+        }, 500);
+      }, 500);
+    }, 500);
+  }, 500);
+}, 500);
+
+//Converting it to promises
+new Promise(function (resolve) {
+  setTimeout(resolve, 500);
+})
+  .then(() => {
+    console.log(1);
+    return new Promise((resolve) => {
+      setTimeout(resolve, 500);
+    });
+  })
+  .then(() => {
+    console.log(2);
+    return new Promise((resolve) => {
+      setTimeout(resolve, 500);
+    });
+  })
+  .then(() => {
+    console.log(3);
+    return new Promise((resolve) => {
+      setTimeout(resolve, 500);
+    });
+  })
+  .then(() => {
+    console.log(4);
+    return new Promise((resolve) => {
+      setTimeout(resolve, 500);
+    });
+  })
+  .then(() => {
+    console.log(5);
+    return new Promise((resolve) => {
+      setTimeout(resolve, 500);
+    });
+  });
+
+//Now its only 1 level deeper, much more readable, debuggable, understandable
+// To turn any callback based API into a promise based API, you have to
+// wrap the functions inside promises and resolve them once the task is completed
+// so you can chain the thens
+
+//Refactoring to use async/await
+
+function wait(ms = 0) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+async function paradise() {
+  console.log(1);
+  await wait(500);
+
+  console.log(2);
+  await wait(500);
+
+  console.log(3);
+  await wait(500);
+
+  console.log(4);
+  await wait(500);
+
+  console.log(5);
+  await wait(500);
+}
+
+paradise();

@@ -112,3 +112,55 @@ const keys = Array.from(myMap.keys());
 keys.push("more");
 
 console.log(keys); // [ 'name', 'more' ]
+
+//Interesting that you can also use sets as keys and it allows you to do === without a reference to the object
+// It's a datatype that it's unique and you don't use it for something else like a generator function or a class, so it's use is specific
+
+//Iterating over Maps
+
+const mapOfRandomValues = new Map([
+  ["country", "Colombia"],
+  ["age", 27],
+  ["name", "camilo"],
+  ["validated", true],
+]);
+
+//For each
+console.log("\nfor each \n");
+mapOfRandomValues.forEach((value) => console.log(value));
+
+//For of
+console.log("\nfor of \n");
+for (const value of mapOfRandomValues) {
+  console.log(value);
+}
+
+//For of with destructuring
+console.log("\nfor of with destructuring \n");
+for (const [key, value] of mapOfRandomValues) {
+  console.log(`${key} - ${value}`);
+}
+
+//using keys() values() entries()
+console.log("\nkeys \n");
+for (let key of mapOfRandomValues.keys()) {
+  console.log(key);
+}
+
+console.log("\nvalues \n");
+for (let value of mapOfRandomValues.values()) {
+  console.log(value);
+}
+
+console.log("\nentries \n");
+for (let entry of mapOfRandomValues.entries()) {
+  console.log(entry);
+}
+
+console.log("\nfor in: \n");
+//Gotta convert it to object
+const obj = Object.fromEntries(mapOfRandomValues);
+
+for (let value in obj) {
+  console.log(`key: ${value}, value: ${obj[value]}`);
+}

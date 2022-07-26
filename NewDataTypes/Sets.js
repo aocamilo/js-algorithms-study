@@ -35,6 +35,9 @@ Set(4) {
 }
 */
 
+// It has a repeated value because it's a difference reference to memory so these are not equal because are objects
+// and two objects are not equal
+
 //Removes the repeated values of an array
 const numbers = [1, 1, 2, 5, 10, 1, 3, 3, 30, 2, 20, 14, 15];
 const setOfNumbers = new Set(numbers);
@@ -59,3 +62,20 @@ let values = [
 ];
 
 console.log(unique(values)); // Hare, Krishna, :-O
+
+for (let value of unique(values)) {
+  console.log(value);
+}
+
+//JSON does not have support for Sets and sometimes what you want to do is send to an API not duplicated values.
+
+//How to iterate over them:
+const setOfNumbers2 = new Set(["one", "two", "three", "four"]);
+
+//For each
+setOfNumbers2.forEach((number) => console.log(number));
+
+//for of
+for (const number of setOfNumbers2) {
+  console.log(number);
+}

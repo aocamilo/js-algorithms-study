@@ -39,6 +39,7 @@ const sayHi = person.sayHi;
   Aca no se esta ejecutando en el contexto del objeto por lo que this hace referencia al
   objeto global y en este caso no existe name.
 */
+// Llamados con () son sugar syntax, que llama a object.call
 console.log(sayHi()); //Hey, I'm undefined
 
 /*
@@ -136,24 +137,24 @@ walk.apply(camiloPerson, [400, "north"]); // Camilo walks 400 meters towards nor
 // service.doSomething(); // 1 token 2 token 3 token
 
 //Or we can use an arrow function that does not create a new context
-class Service {
-  constructor() {
-    this.numbers = [1, 2, 3];
-    this.token = "token";
-  }
+// class Service {
+//   constructor() {
+//     this.numbers = [1, 2, 3];
+//     this.token = "token";
+//   }
 
-  doSomething() {
-    setTimeout(() => {
-      this.numbers.forEach((number) => {
-        console.log(number);
-        console.log(this.token);
-      });
-    }, 100);
-  }
-}
+//   doSomething() {
+//     setTimeout(() => {
+//       this.numbers.forEach((number) => {
+//         console.log(number);
+//         console.log(this.token);
+//       });
+//     }, 100);
+//   }
+// }
 
-let service = new Service();
-service.doSomething(); // 1 token 2 token 3 token
+// let service = new Service();
+// service.doSomething(); // 1 token 2 token 3 token
 
 //This also loses context when the method is used as a callback
 class ServiceTwo {
@@ -178,6 +179,7 @@ class TodoAddForm extends React.Component {
   constructor() {
     super();
     this.todos = [];
+    this.add = this.add.bind(this);
   }
 
   componentWillMount() {
