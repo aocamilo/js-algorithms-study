@@ -24,6 +24,7 @@ function greet() {
 
 function respond() {
   return setTimeout(() => {
+    // Set timeout it's a web API so the web gets in charge of counting the time and telling when it's ready to execute the callback fn
     // This callback is pushed to the callback queue
     return "Hey!"; //And we get the response and the callstack is empty again, the callback queue it's empty again
   }, 1000);
